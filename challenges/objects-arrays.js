@@ -34,20 +34,20 @@ var dinoThree = function() {
 // Using your dinosaur objects, log answers to these questions:
 
 // How much did tyrannosaurus weigh?
-console.log(dinoOne(weight));
+console.log(dinoOne.weight);
 
 // What was the diet of a velociraptor?
-console.log(dinoThree(diet));
+console.log(dinoThree.diet);
 
 // How long was a stegosaurus?
-console.log(dinotwo(length));
+console.log(dinoTwo.length);
 
 // What time period did tyrannosaurus live in?
-console.log(dinoOne(period));
+console.log(dinoOne.period);
 
 
 // Create a new roar method for the tyrannosaurus.  When called, return "RAWERSRARARWERSARARARRRR!" Log the result.
-console.log(dinoOne(roar));
+console.log(dinoOne.roar);
 
 
 // ==== Arrays ====
@@ -70,9 +70,15 @@ const graduates = [
 /* Request 1: Create a new array called universities that contains all the universities in the graduates array. This will be an array of strings.
 
 Once you have the new array created, sort the universities alphabetically and log the result. */
-const universities = [university];
-university.sort();
-console.log(universities);
+const universities = [];
+
+for (i = 0; i < graduates.length; i++) {
+  graduates[i].university;    
+  universities.push(graduates[i].university);
+  universities.sort();
+}
+console.log(universities)
+
 
 /* Request 2: Create a new array called contactInfo that contains both first name and email of each student. This will be an array of strings.
 
@@ -80,8 +86,12 @@ The resulting contact information strings should have a space between the first 
 "Josh josh@example.com"
 
 Log the result of your new array. */
-const contactInfo = [first_name, email];
-var seperate = contactInfo.split('  ')
+const contactInfo = [];
+
+for (i = 0; i < graduates.length; i++) {
+  contactInfo.push(`${graduates[i].first_name} ${graduates[i].email}`);
+}
+
 console.log(contactInfo);
 
 /* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called unisWithUni that contains them all. This will be an array of objects. Log the result. */
@@ -111,11 +121,13 @@ const zooAnimals = [
 The zoos want to display both the scientific name and the animal name in front of the habitats. Populate the displayNames array with only the animal_name and scientific_name of each animal. displayNames will be an array of strings, and each string should follow this pattern: "Name: Jackal, asiatic, Scientific: Canis aureus."
 
 */
-const displayNames = [animal_name, scientific_name];
-displayNames.forEach(zooAnimals)
-var split = displayNames.split('  ')
+const animalNames = [];
+zooAnimals.forEach(element => {
+  animalNames.push(`names: ${element.animal_name}, scientific: ${element.scientific_name}`)
+});
+console.log(animalNames);
 
-console.log(displayNames);
+
 
 /* Request 2: .map()
 
@@ -123,33 +135,32 @@ The zoos need a list of all their animal's names (animal_name only) converted to
 
 */
 
-const lowCaseAnimalNames = [animal_name];
-function theMap() {
-lowCaseAnimalNames.map();
-var something = lowCaseAnimalNames.tolowercase()
-};
-console.log(lowCaseAnimalNames);
+let lowerCase = zooAnimals.map((zooAnimal, index, zooAnimals) => {
+  return zooAnimal.animal_name.toLowerCase();
+});
+
+console.log(lowerCase); 
 
 /* Request 3: .filter() 
 
 The zoos are concerned about animals with a lower population count. Using filter, create a new array of objects called lowPopulationAnimals which contains only the animals with a population less than 5.
 
 */
-const lowPopulationAnimals = [population];
-population.filter <= 5;
-console.log(lowPopulationAnimals);
+let largerPopulation = zooAnimals.filter(zooAnimal => {
+  if(zooAnimal.population <= 5) {
+    return true
+  };
+});
+console.log(largerPopulation);
 
 /* Request 4: .reduce() 
 
 The zoos need to know their total animal population across the United States. Find the total population from all the zoos using the .reduce() method. Remember the reduce method takes two arguments: a callback (which itself takes two args), and an initial value for the count.
 
 */
-const populationTotal = 0;
-  function animal (animal_name, population){
-animal_name = [zooAnimals.animal_name];
-population = [zooAnimals.population]
-  }
-  populationTotal = [];
+let populationTotal = zooAnimals.reduce((population, zooAnimal, index, zooAnimals) => {
+  return population += zooAnimal.population;
+},0);
 
 console.log(populationTotal);
 
